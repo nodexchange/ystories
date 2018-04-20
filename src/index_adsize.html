@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- uncomment this meta tag to use as a child content piece in a template -->
+  <meta name="ad.frame" content="child">
+  <title>ACE - Ad Building Framework</title>
+  <style>
+    /* include your CSS styles like this */
+    @@include('./style.min.css');
+  </style>
+  <!-- include the ADTECH script -->
+  <script src="ADTECH.js"></script>
+</head>
+
+<body>
+  <div class="progress-bar-container">
+    <div class="marker-bar">
+        <div class="progress-markers"></div>
+        <div class="progress-markers"></div>
+        <div class="progress-markers"></div>
+        <div class="progress-markers"></div>
+        <div class="progress-markers"></div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress" style="width: 0%;"></div>
+    </div>
+  </div>
+  <div id="container">
+    <!-- / A set of walkthrough screens in HTML/CSS/JS. A personal experiment with layering images, CSS3 transitions, & flexbox. -->
+    <button class='open-walkthrough'>Start</button>
+    <div class='walkthrough show reveal'>
+      <div class='walkthrough-pagination'>
+        <a class='dot active'></a>
+        <a class='dot'></a>
+        <a class='dot'></a>
+        <a class='dot'></a>
+        <a class='dot'></a>
+      </div>
+      <div class='walkthrough-body'>
+        <ul class='screens animate'>
+        </ul>
+        <button class='prev-screen'>
+          <i class='icon-angle-left'></i>
+        </button>
+        <button class='next-screen'>
+          <i class='icon-angle-right'></i>
+        </button>
+      </div>
+      <div class='walkthrough-footer'>
+        <button class='button next-screen'>Next</button>
+        <button class='button finish close' disabled='true'>Finish</button>
+      </div>
+    </div>
+  </div>
+  <!-- include your external scripts like this -->
+  <script>
+    @@include('./script.min.js')
+  </script>
+
+</body>
+
+</html>

@@ -5,6 +5,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# assets
+*.mp4
+*.webm
+
+# creative files
+*.psd
+*.ie
+*.fla
+
 # Runtime data
 pids
 *.pid
@@ -56,4 +65,7 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# mp4
+.mp4
 
