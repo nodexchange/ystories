@@ -17,6 +17,10 @@ function dataLoadedHandler() {
   navigationClass = new Navigation(sliderClass, progressClass);
   console.log('LINKED>>> ');
   sliderClass.openModal();
+
+  document.getElementsByClassName('Scene')[0].addEventListener("click", () => {
+    document.querySelector('.Cube').classList.toggle('flipped');
+  })
 }
 
 

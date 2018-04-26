@@ -1,6 +1,7 @@
 /* if you want to use separate CSS files, include into main CSS like this */
 @import 'assets/base';
 @import 'assets/progress';
+@import 'assets/cube';
 
 @mixin material-shadow() {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.23), 0 10px 40px rgba(0, 0, 0, 0.19);
