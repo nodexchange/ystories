@@ -4,6 +4,7 @@ const articles = [];
 let articlesClass = {};
 let progressClass = {};
 let sliderClass = {};
+let cube = {};
 
 function pageReadyHandler() {
   sliderClass = new Slider({nextButtonClass: 'next-screen', prevButtonClass: 'prev-screen', finishButtonClass: 'finish'});
@@ -11,7 +12,8 @@ function pageReadyHandler() {
 }
 
 function dataLoadedHandler() {
-  articlesClass = new Articles(articles);
+  cube = new Cube();
+  articlesClass = new Articles(articles, cube);
   articlesClass.setupSliderArticles();
   progressClass = new Progress(sliderClass);
   navigationClass = new Navigation(sliderClass, progressClass);
