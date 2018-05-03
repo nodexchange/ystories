@@ -10,6 +10,9 @@ $cubeDepth: $cubeHeight;
   height: $cubeHeight;
   text-align: center;
   display: inline-block;
+  position: absolute;
+  top:0;
+  left: 0;
 }
 
 .ybox {
@@ -80,21 +83,28 @@ $cubeDepth: $cubeHeight;
 }
 
 
-@keyframes NAME-YOUR-ANIMATION {
-  0%   { transform: rotateY(0deg) scale(1); }
-  25%   { transform: rotateY(20deg) scale(0.8); }
-  100% { transform: rotateY(-90deg) scale(1); }
+@keyframes CubeLeft {
+  0%   { transform: rotateY(0deg) scale(1) translateZ(0px);}
+  25%   { transform: rotateY(20deg) scale(0.75) translateZ(0px); }
+  100% { transform: rotateY(-90deg) scale(1) translateZ(0px); }
+}
+
+
+@keyframes CubeRight {
+  0% { transform: rotateY(-90deg) scale(1) translateZ(0px); }
+  25%   { transform: rotateY(-120deg) scale(0.8) translateZ(0px);}
+  100%   { transform: rotateY(0deg) scale(1) translateZ(0px); }
 }
 
 
 #radio-right:checked~.space3d .ybox {
-  animation:         NAME-YOUR-ANIMATION 3s 1; /* IE 10+, Fx 29+ */
-  
+  animation: CubeLeft 1.5s 1; /* IE 10+, Fx 29+ */
   animation-fill-mode: forwards;
 }
 
 #radio-bottom:checked~.space3d .ybox {
-  transform: rotateY(90deg);
+  animation: CubeRight 1.5s 1; /* IE 10+, Fx 29+ */
+  animation-fill-mode: forwards;
 }
 
 #radio-top:checked~.space3d .ybox {
