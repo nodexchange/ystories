@@ -1,0 +1,142 @@
+@charset "utf-8";
+
+#ad_banner {
+    width: 300px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+#close_btn {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    height: 25px;
+}
+#swipe_icon {
+    position: absolute;
+    top: 50%;
+    left: -62px;
+    margin-left: -62px;
+    margin-top: -62px;
+    width: 124px;
+    height: 124px;
+    background: url(../images/swipe_icon.png) no-repeat;
+    z-index: 301;
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-transition: opacity 0.5s, left 1s ease-out;
+    -moz-transition: opacity 0.5s, left 1s ease-out;
+    -o-transition: opacity 0.5s, left 1s ease-out;
+    -ms-transition: opacity 0.5s, left 1s ease-out;
+    transition: opacity 0.5s, left 1s ease-out;
+}
+#swipeCubeAd {
+    z-index: 201;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+    margin: 0;
+}
+#spacer_swipeCubeAd {
+    z-index: 200;
+    height: 0px;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    transition: height 0.5s;
+}
+.hexaflip-cube_swipeCubeAd {
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    display: inline-block;
+    position: relative;
+    perspective: 500px;
+}
+.foldIn_swipeCubeAd {
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    transition: height 0.5s;
+}
+.hexaflip-cube_swipeCubeAd > div {
+    -webkit-transition: -webkit-transform 0.5s;
+    -moz-transition: -moz-transform 0.5s;
+    -o-transition: -o-transform 0.5s;
+    -ms-transition: -ms-transform 0.5s;
+    transition: transform 0.5s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.hexaflip-cube_swipeCubeAd > div.shake {
+    -webkit-transition: -webkit-transform 0.2s;
+    -moz-transition: -moz-transform 0.2s;
+    -o-transition: -o-transform 0.2s;
+    -ms-transition: -ms-transform 0.2s;
+    transition: transform 0.2s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.hexaflip-cube_swipeCubeAd > div.slow {
+    -webkit-transition: -webkit-transform 1.25s;
+    -moz-transition: -moz-transform 1.25s;
+    -o-transition: -o-transform 1.25s;
+    -ms-transition: -ms-transform 1.25s;
+    transition: transform 1.25s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.hexaflip-cube_swipeCubeAd > div.no-tween {
+    -webkit-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -o-transition-duration: 0s;
+    -ms-transition-duration: 0s;
+    transition-duration: 0s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.hexaflip-cube_swipeCubeAd .hexaflip-side {
+    width: 300px;
+    overflow: hidden;
+    height: 250px;
+    position: absolute;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    text-align: center;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 100;
+    text-shadow: 0 -2px 0 rgba(0, 0, 0, 0.2);
+    line-height: 1.5;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+}
+.hexaflip-cube_swipeCubeAd .hexaflip-side-left, .hexaflip-cube_swipeCubeAd .hexaflip-side-right {
+    background-color: #555 !important;
+}
+.hexaflip-cube_swipeCubeAd .hexaflip-timepicker .hexaflip-cube:last-child .hexaflip-side:nth-child(odd) {
+    background-color: #ff575b;
+}

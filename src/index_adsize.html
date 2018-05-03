@@ -33,6 +33,25 @@
     </div>
     
 </div>
+  <div class="Scene">
+      <div class="Cube Cube--grows">
+          <div class="Cube-side Cube-top"></div>
+          <div class="Cube-side Cube-left"></div>
+          <div class="Cube-side Cube-front"></div>
+          <div class="Cube-side Cube-back"></div>
+          <div class="Cube-side Cube-bottom"></div>
+          <div class="Cube-side Cube-right"></div>
+      </div>
+  </div>
+  <div id="ad_banner">
+    <div id="swipeCubeAd"></div>
+    <div id="spacer_swipeCubeAd"></div>
+    <div id="swipe_icon"></div>
+    <script type="text/javascript" src="swipe-cube.js"></script>
+    
+
+    <img src="default.gif" id="close_btn" onClick="javascript:ADTECH.close();" />
+  </div>
   <div class="progress-bar-container">
     <div class="marker-bar">
         <div class="progress-markers"></div>
@@ -75,6 +94,22 @@
   <!-- include your external scripts like this -->
   <script>
     @@include('./script.min.js')
+  </script>
+  <script type="text/javascript">
+    ADTECH.ready(function(){
+      CubeAd.init({
+          position: "inline",
+          imageFront : ADTECH.getContent("Image Front", "1.jpg"),
+          imageBack : ADTECH.getContent("Image Back", "3.jpg"),
+          imageLeft : ADTECH.getContent("Image Left", "4.jpg"),
+          imageRight : ADTECH.getContent("Image Right", "2.jpg"),
+          size: 600,
+          display_size: 300,
+          display_size_height: 250,
+          retina: true,
+          teaser_id : "swipeCubeAd",
+      });
+  });
   </script>
 
 </body>
