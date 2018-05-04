@@ -15,7 +15,7 @@ function dataLoadedHandler() {
   cube = new Cube();
   articlesClass = new Articles(articles, cube);
   articlesClass.setupSliderArticles();
-  progressClass = new Progress(sliderClass);
+  progressClass = new Progress(sliderClass, cube);
   navigationClass = new Navigation(sliderClass, progressClass);
   console.log('LINKED>>> ');
   sliderClass.openModal();
