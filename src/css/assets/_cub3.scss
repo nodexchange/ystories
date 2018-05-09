@@ -11,20 +11,20 @@ $cubeDepth: $cubeHeight;
   text-align: center;
   display: inline-block;
   position: absolute;
-  top:0;
-  left: 0;
+  top:44px;
+  left: 44px;
 }
 
 .ybox {
   display: inline-block;
   // transition: all 0.7s cubic-bezier(0.175, 0.885, 0.320, 1.275);
-  transition: all 0.7s ease-out;
+  transition: all 0.6s linear;
   text-align: center;
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: rotateY(0deg);
+  transform: rotateY(0deg), scaleX(1), scaleY(1) scaleZ(1);
 }
 
 .yface {
@@ -37,6 +37,59 @@ $cubeDepth: $cubeHeight;
   line-height: $cubeWidth;
   backface-visibility: hidden;
   pointer-events: none;
+  background-size: cover !important;
+
+  h3 {
+    font-size: 11px;
+    line-height: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    background-color: rgba(white, 0.6);
+    padding-top: 4px;
+    padding-bottom: 4px;
+    opacity: 0;
+    transition: all 0.4s linear;
+    position: absolute;
+    bottom:0;
+    left: -30px;
+    transition-delay: 0.6s;
+    text-align: left;
+    width: 80%;
+    padding-left: 10px;
+    padding-right: 6px; left: 0;
+    opacity: 1;
+  }
+
+  .headerReveal {
+    left: 0;
+    opacity: 1;
+  }
+
+  .headerHide {
+    transition: all 0.2s linear;
+    left: -30px;
+    opacity: 0;
+  }
+
+  p {
+    line-height: 1.6em;
+    font-size: 13px;
+    margin-top: 16px;
+    padding-top: 0;
+    color: rgba(white, 0.8);
+    // background-color: rgba(black, 0.6);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    opacity: 0;
+    margin-left:-440px;
+    transition: all 0.7s linear;
+    transition-delay: 1s;
+  }
+
+  .paragraphReveal {
+    margin-left:0;
+    opacity: 1;
+  }
 }
 
 .yface--front {
@@ -116,31 +169,25 @@ $cubeDepth: $cubeHeight;
   transform: rotateY(180deg);
 } // Apply backgrounds
 .yface--front {
-  background: url(https://2.bp.blogspot.com/-JxKfUObT4L8/UYYaRhRNJmI/AAAAAAAAAUY/243IlIOKj2c/s320/brahama.jpg);
   background-size: 100%;
 }
 
 .yface--left {
-  background: url(https://4.bp.blogspot.com/-HGFGdCGFTkw/UXVq6PNmS4I/AAAAAAAAAUE/hBNmVCOVlu4/s400/durga+wm.jpg);
   background-size: auto 100%;
 }
 
 .yface--right {
-  background: url(https://2.bp.blogspot.com/-yrnBD8wJ-g0/UNRtPF8pR7I/AAAAAAAAATE/YSpLvqTNyoQ/s320/A+P+J+abdul+kalam_+swm+.jpg);
   background-size: auto 100%;
 }
 
 .yface--top {
-  background: url(https://3.bp.blogspot.com/-mySu8dy4ux4/ULiVKS4YBbI/AAAAAAAAAR0/vBMi_4dAPDE/s400/rajiv+dixit+s.jpg);
   background-size: auto 100%;
 }
 
 .yface--bottom {
-  background: url(https://2.bp.blogspot.com/-B9QWFtc9bVY/UHFs7y9GqkI/AAAAAAAAARI/YLDkoHYr3g4/s400/Gau+wm.jpg);
   background-size: auto 100%;
 }
 
 .yface--back {
-  background: url(https://3.bp.blogspot.com/-ofufG97PpiU/UBzXu-1AisI/AAAAAAAAAP0/iDnhOh-vrb8/s400/shiv+ji.jpg);
   background-size: auto 100%;
 }

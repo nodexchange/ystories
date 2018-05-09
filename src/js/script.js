@@ -14,7 +14,12 @@ function pageReadyHandler() {
 function dataLoadedHandler() {
   cube = new Cube();
   articlesClass = new Articles(articles, cube);
-  articlesClass.setupSliderArticles();
+  try {
+    articlesClass.setupSliderArticles();
+  } catch (e) {
+    console.log(e);
+  }
+  console.log('____');
   progressClass = new Progress(sliderClass, cube);
   navigationClass = new Navigation(sliderClass, progressClass);
   console.log('LINKED>>> ');

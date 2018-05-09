@@ -20,7 +20,8 @@ class Progress {
     clearInterval(this.progressTimer);
     this.displayTime = 100;
     this.updateProgressBar(this.displayTime, this.adProgress);
-    console.log('disabled + _+_+_+ ');
+    
+    // console.log('disabled + _+_+_+ ');
   }
   
   updateProgressBar(value, adProgress) {
@@ -31,12 +32,12 @@ class Progress {
       this.lastUpdated = width;
       adProgress.style.width = width + '%';
     }
-    console.log('last triggered === ' + this.lastTriggered, value);
+    // console.log('last triggered === ' + this.lastTriggered, value);
     if (value > 21 && this.lastTriggered === 0) {
       this.lastTriggered = 1;
       this.slider.nextScreen();
       this.cube.rotateRight();
-      console.log(this.lastTriggered);
+      // console.log(this.lastTriggered);
     } else if (value > 41 && this.lastTriggered === 1) {
       this.lastTriggered = 2;
       this.slider.nextScreen();

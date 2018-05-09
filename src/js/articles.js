@@ -1,47 +1,30 @@
 class Articles {
-  constructor(articles) {
+  constructor(articles, cube) {
     this.articlesArray = articles;
+    this.cubeSides = cube.sides;
+    this.articleId = 0;
+    this.cubeMap = ['front', 'left', 'right', 'back'];
   }
   
   setupSliderArticles() {
-    let screensContainer = document.getElementsByClassName('screens')[0];
     for (let i=0; i<this.articlesArray.length; i++) {
-      let article;
-      if (i === 0) {
-        article = this.articleTemplate(this.articlesArray[i], true);
-      } else {
-        article = this.articleTemplate(this.articlesArray[i]);
-      }
-      screensContainer.appendChild(article);
+      this.articleTemplate(this.articlesArray[i], true);
     }
   }
-  // setupslider(articles);
 
   articleTemplate(article, active) {
-    // figure.style.transformOrigin = `50% 50% ${-apothem}px`;
-    let screenItem = document.createElement('li');
-    screenItem.className = 'screen';
-    if (active) {
-      screenItem.className = 'screen active';
+    if (this.cubeMap[this.articleId] === undefined) {
+      console.log('NOT FOUND>>>');
+      return;
     }
-
-    let media = document.createElement('div');
-    media.className = 'media logo';
-    
-    let mediaImg = document.createElement('img');
-    mediaImg.className = 'logo';
-    mediaImg.src = article.image;
+    this.cubeSides[this.cubeMap[this.articleId]].style.background = 'url(' + article.image + ')';
 
     let titleHeader = document.createElement('h3');
     titleHeader.innerHTML = article.title;
     let paragraph = document.createElement('p');
-    paragraph.innerHTML = article.summary;
-    
-    media.appendChild(mediaImg)
-    screenItem.appendChild(media);
-    screenItem.appendChild(titleHeader);
-    screenItem.appendChild(paragraph);
-
-    return screenItem;
+    // paragraph.innerHTML = article.summary; // MARTIN--- DISABLED;
+    this.cubeSides[this.cubeMap[this.articleId]].appendChild(titleHeader);
+    this.cubeSides[this.cubeMap[this.articleId]].appendChild(paragraph);
+    this.articleId++;
   }
 }
