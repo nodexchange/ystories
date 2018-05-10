@@ -11,7 +11,8 @@ class Progress {
   }
   activateProgressBar() {
     this.progressTimer = setInterval(() => {
-      this.displayTime += 1;
+      // this.displayTime += 0.4; // 10s
+      this.displayTime += 0.5; // 10s
       // var percent = (player.currentTime() / player.duration()) * 100; 
       this.updateProgressBar(this.displayTime, this.adProgress);
     }, 200);

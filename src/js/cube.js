@@ -7,6 +7,10 @@ class Cube {
     this.sides.right = this.cubeRoot.getElementsByClassName('yface--right')[0];
     this.sides.back = this.cubeRoot.getElementsByClassName('yface--back')[0];
     this.currentRotation = 0;
+
+    setTimeout(() => {
+      this.cubeRoot.parentElement.className += ' spaceReveal';
+    }, 1000);
   }
 
   rotateLeft() {
