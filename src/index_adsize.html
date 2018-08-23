@@ -4,49 +4,55 @@
 <head>
   <meta charset="UTF-8">
   <!-- uncomment this meta tag to use as a child content piece in a template -->
-  <meta name="ad.frame" content="child">
+  <!-- <meta name="ad.frame" content="c h i l d"> -->
   <title>ACE - Ad Building Framework</title>
   <style>
     /* include your CSS styles like this */
     @@include('./style.min.css');
   </style>
   <!-- include the ADTECH script -->
-  <script src="ADTECH.js"></script>
+  <script type="text/javascript" src="https://onecreative.aol.com/ads/jsapi/ONE.js"></script>
 </head>
 
 <body>
   <div id="ystories-container">
-    <div id="ystory-radios">
-      <input type="radio" checked id="radio-front" name="select-face"/>    
-      <input type="radio" id="radio-left" name="select-face"/>
-      <input type="radio" id="radio-right" name="select-face"/>
-      <input type="radio" id="radio-top" name="select-face"/>
-      <input type="radio" id="radio-bottom" name="select-face"/>
-      <input type="radio" id="radio-back" name="select-face"/>
-    </div>
-    <div class="ystories-logo"></div>
-    <div class="space3d">
-        <div class="ybox">
-          <div class="yface yface--front"></div>
-          <div class="yface yface--left"></div>
-          <div class="yface yface--right"></div>
-          <div class="yface yface--back"></div>
+    <section id="main-section">
+      <div class="swiper-container">
+        <div class="swiper-wrapper"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next swiper-button-black"></div>
+        <div class="circle circle-left"></div>
+        <div class="swiper-button-prev swiper-button-black"></div>
+        <div class="circle circle-right"></div>
+        <div id="ystory-radios">
+          <div id="radios">
+            <label for="input1"></label>
+            <input  id="input1" name="radio" type="radio" />
+            <label for="input2"></label>
+            <input  id="input2" name="radio" type="radio" />
+            <label for="input3"></label>
+            <input  id="input3" name="radio" type="radio" />
+            <label for="input4"></label>
+            <input  id="input4" name="radio" type="radio" />
+            <label for="input5"></label>
+            <input  id="input5" name="radio" type="radio" />
+            <span id="slider"></span>
+          </div>
         </div>
-        
-    </div>
-      <div class="progress-bar-container">
-        <div class="marker-bar">
-            <div class="progress-markers"></div>
-            <div class="progress-markers"></div>
-            <div class="progress-markers"></div>
-            <div class="progress-markers"></div>
-            <div class="progress-markers"></div>
-        </div>
-        <div class="progress-bar">
-          <div class="progress" style="width: 0%;"></div>
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: 0%;"></div>
+          </div>
         </div>
       </div>
+    </section>
+    <footer id="footer">
+      <div class="ystories-logo-container">
+        <div class="ystories-logo"></div>
+      </div>
+    </footer>
   </div>
+  <script src="./swiper.min.js"></script>
   <!-- include your external scripts like this -->
   <script>
     @@include('./script.min.js')

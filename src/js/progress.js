@@ -7,54 +7,64 @@ class Progress {
     this.lastTriggered = 0;
     this.slider = sliderClass;
     this.cube = cubeClass;
-    this.progressTimer = {};
+  }
+  resetProgressBar() {
+    this.lastUpdated = 0;
+    this.displayTime = 0;
+    this.adProgress.style.transition = 'width 0.4s';
+    this.adProgress.style.width = '0%';
+    this.adProgress.parentNode.style.opacity = 0.9;
+    this.adProgress.parentNode.style.height = '2px';
+    clearTimeout(this.progressComplete);
   }
   activateProgressBar() {
-    this.progressTimer = setInterval(() => {
-      // this.displayTime += 0.4; // 10s
-      this.displayTime += 0.5; // 10s
-      // var percent = (player.currentTime() / player.duration()) * 100; 
-      this.updateProgressBar(this.displayTime, this.adProgress);
-    }, 200);
-  }
-  disableProgressBar() {
-    clearInterval(this.progressTimer);
-    this.displayTime = 100;
-    this.updateProgressBar(this.displayTime, this.adProgress);
-    
-    // console.log('disabled + _+_+_+ ');
-  }
-  
-  updateProgressBar(value, adProgress) {
-    let width = Math.ceil(value);
-    let differenceSinceLastUpdate = width - this.lastUpdated;
-    if (differenceSinceLastUpdate > 2.5) {
-      // console.log('>> ' + width);
-      this.lastUpdated = width;
-      adProgress.style.width = width + '%';
+    this.resetProgressBar();
+    if (this.lastTriggered === 4) {
+      this.hideProgressBar();
+      return;
     }
-    // console.log('last triggered === ' + this.lastTriggered, value);
-    if (value > 21 && this.lastTriggered === 0) {
-      this.lastTriggered = 1;
-      this.slider.nextScreen();
-      this.cube.rotateRight();
-      // console.log(this.lastTriggered);
-    } else if (value > 41 && this.lastTriggered === 1) {
-      this.lastTriggered = 2;
-      this.slider.nextScreen();
-      this.cube.rotateRight();
-    } else if (value > 61 && this.lastTriggered === 2) {
-      this.lastTriggered = 3;
-      this.slider.nextScreen();
-      this.cube.rotateRight();
-    } else if (value > 81 && this.lastTriggered === 3) {
+    this.progressComplete = setTimeout(() => {
+      this.progressCompleteHandler();
+    }, 8000);
+    setTimeout(() => {
+      this.adProgress.style.transition = 'width 8s';
+      this.adProgress.style.width = '100%';
+    }, 500);
+  }
+
+  progressCompleteHandler() {
+    this.hideProgressBar();
+    setTimeout(() => {
+      this.updateRadios(true);
+    }, 1000);
+  }
+
+  hideProgressBar() {
+    this.adProgress.parentNode.style.height = 0;
+    this.adProgress.parentNode.style.opacity = 0;
+  }
+
+  updateRadios(nextSlide) {
+    let radioButton = document.getElementById('input' + (this.lastTriggered + 1));
+    radioButton.checked = true;
+    if (nextSlide === true) {
+      this.slider.nextSlide();
+    }
+  }
+  nextArrowHandler() {
+    this.lastTriggered = this.lastTriggered + 1;
+    if (this.lastTriggered > 4) {
       this.lastTriggered = 4;
-      this.cube.rotateRight();
-      this.slider.nextScreen();
     }
-    if (width > 96 && width !== 100) {
-      this.disableProgressBar();
-    }
+    this.updateRadios(false);
+    this.activateProgressBar();
   }
-  
+  prevArrowHandler() {
+    this.lastTriggered = this.lastTriggered - 1;
+    if (this.lastTriggered < 0) {
+      this.lastTriggered = 0;
+    }
+    this.updateRadios(false);
+    this.activateProgressBar();
+  }
 }

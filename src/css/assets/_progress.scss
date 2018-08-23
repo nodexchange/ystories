@@ -1,45 +1,31 @@
+
+$dot-height: 2px;
+$dots-container-width: 300px;
+
 .progress-bar-container {
-  top: 0px;
-  height: 4px;
-  position: absolute;
+  top: -150px;
+  height: $dot-height;
+  position: relative;
   opacity: 0.9;
-  width: 300px;
+  width: $dots-container-width;
   display: flex;
-  z-index: 101;
+  z-index: 4;
   left: 0;
-  .marker-bar {
-    top: 0px;
-    height: 100%;
-    position: absolute;
-    opacity: 0.9;
-    width: 100%;
-    display: flex;
-    .progress-markers {
-      position: relative;
-      top: 0;
-      left: 0;
-      height: 100%;
-      background-color: rgba(34,34,34,0.25);
-      border-radius: 8px;
-      width: 20%;
-      margin-left: 4px;
-    }
-  }
   .progress-bar {
     top: 0px;
     height: 100%;
     position: absolute;
     opacity: 0.8;
-    width: 100%;
+    width: $dots-container-width;
     display: flex;
+    transition: opacity 0.8s, height 0.8s;
     .progress {
       position: relative;
       top: 0;
       left: 0;
       height: 100%;
       background-color: #fff;
-      -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
-      transition: width 2s;
+      transition: width 8s;
       width: 0; /* dynamic value */
     }
     

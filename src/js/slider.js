@@ -1,99 +1,59 @@
 class Slider {
-  constructor({nextButtonClass, prevButtonClass, finishButtonClass}) {
-    this.index = 0
-    this.nextButtonClassName = nextButtonClass;
-    this.prevButtonClassName = prevButtonClass;
-    this.finishButtonClassName = finishButtonClass;
+  constructor({prevHandler, nextHandler}) {
+    this.nextActionHandler = nextHandler;
+    this.prevActionHandler = prevHandler;
   }
-
-  nextScreen() {
-    if (this.index < this.indexMax()) {
-      this.index += 1;
-      this.updateScreen();
-    }
-  }
-
-  prevScreen() {
-    if (this.index > 0) {
-      this.index -= 1;
-      this.updateScreen();
-    }
-  }
-
-  updateScreen() {
-    this.reset();
-    this.goTo(this.index);
-    this.setBtns();
-  }
-
-  setBtns() {
-    let nextBtn = document.getElementsByClassName(this.nextButtonClassName)[0];
-    let prevBtn = document.getElementsByClassName(this.prevButtonClassName)[0];
-    let lastBtn = document.getElementsByClassName(this.finishButtonClassName)[0];
-    if (this.index === this.indexMax()) {
-      nextBtn.setAttribute('disabled', true);
-      prevBtn.setAttribute('disabled', false);
-      lastBtn.classList.add('active');
-      lastBtn.removeAttribute('disabled');
-      return;
-    } else if (this.index === 0) {
-      nextBtn.setAttribute('disabled', false);
-      prevBtn.setAttribute('disabled', true);
-      lastBtn.classList.remove('active');
-      lastBtn.setAttribute('disabled', true);
-      return
-    }
-    nextBtn.setAttribute('disabled', false);
-    prevBtn.setAttribute('disabled', false);
-    lastBtn.classList.remove('active');
-    lastBtn.setAttribute('disabled', true);
-  }
-
-  goTo(index) {
-    try {
-      document.getElementsByClassName('screen')[index].classList.add('active');
-      document.getElementsByClassName('dot')[index].classList.add('active');
-    } catch (e) {
-      console.log('goTo failed', e);
-    }
-  }
-
-  reset() {
-    let dots = document.getElementsByClassName('dot');
-    for (let i = 0; i < dots.length; i++) {
-      try {
-        document.getElementsByClassName('screen')[i].classList.remove('active');
-      } catch (e) {
-        console.log('screen not found (yet?)');
+  activateSlider() {
+    this.swiper = new Swiper('.swiper-container', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      on: {
+        init: () => {
+          let currentSlide = document.getElementById('slide' + 0);
+          let currentImage = currentSlide.getElementsByClassName('slide-image')[0];
+          currentImage.className = 'slide-image slide-image-animation';
+          this.addClickthroughs();
+        }
       }
-      try {
-        document.getElementsByClassName('dot')[i].classList.remove('active');
-      } catch (e) {
-        console.log('dots not found (yet?)');
+    });
+    this.currentIndex = this.swiper.activeIndex;
+    this.swiper.on('slideChange', (el) => {
+      let currentSlide = document.getElementById('slide' + this.currentIndex);
+      let currentImage = currentSlide.getElementsByClassName('slide-image')[0];
+      currentImage.className = 'slide-image';
+      if (this.swiper.activeIndex > this.currentIndex) {
+        this.nextActionHandler();
+      } else if (this.swiper.activeIndex < this.currentIndex) {
+        this.prevActionHandler();
       }
+      this.currentIndex = this.swiper.activeIndex;
+      currentSlide = document.getElementById('slide' + this.currentIndex);
+      currentImage = currentSlide.getElementsByClassName('slide-image')[0];
+      currentImage.className = 'slide-image slide-image-animation';
+    });
+    // this.swiper.addEventListener('next', () => this.nextHandler);
+    // this.swiper.addEventListener('prev', () => this.prevHandler);
+  }
+  addClickthroughs() {
+    console.log('___ HERE');
+    let slideImages = document.getElementsByClassName('slide-image');
+    let slideText = document.getElementsByClassName('slide-text');
+    console.log(slideImages);
+    for (let i = 0; i < slideImages.length; i++) {
+      console.log('ADDED', i);
+      slideImages[i].addEventListener('click', (e) => this.clickHandler(e));
+      slideText[i].addEventListener('click', (e) => this.clickHandler(e));
     }
   }
-
-  indexMax() {
-    let screens = document.getElementsByClassName('screen');
-    return screens.length - 1;
+  clickHandler(e) {
+    let currentSlide = document.getElementById('slide' + this.currentIndex);
+    let title = currentSlide.getElementsByClassName('slide-text')[0].childNodes[0];
+    console.log('CLICK HANDLER', title.innerHTML, title.dataset.link);
+    ONE.click('Clickthrough', { meta: {title: title.innerHTML.substring(0, 50)}, overrideUrl: title.dataset.link });
   }
-
-  closeModal() {
-    document.getElementsByClassName('walkthrough')[0].classList.remove('reveal');
-    return setTimeout(() => {
-      document.getElementsByClassName('walkthrough')[0].classList.remove('show');
-      this.index = 0;
-      return this.updateScreen();
-    }, 200);
+  nextSlide() {
+    this.swiper.slideNext();
   }
-
-  openModal() {
-    document.getElementsByClassName('walkthrough')[0].classList.add('show');
-    setTimeout((() => {
-      document.getElementsByClassName('walkthrough')[0].classList.add('reveal');
-    }), 200);
-    return this.updateScreen();
-  }
-
-};
+}

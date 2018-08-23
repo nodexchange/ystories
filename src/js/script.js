@@ -1,29 +1,32 @@
 'use strict';
+/* global ONE */
 
 const articles = [];
 let articlesClass = {};
 let progressClass = {};
+let dataManagerClass = {};
 let sliderClass = {};
-let cube = {};
 
 function pageReadyHandler() {
-  sliderClass = new Slider({nextButtonClass: 'next-screen', prevButtonClass: 'prev-screen', finishButtonClass: 'finish'});
+  sliderClass = new Slider({ prevHandler: prevActionHandler, nextHandler: nextActionHandler });
   dataManagerClass = new DataManager('./sidekick.json', articles, dataLoadedHandler);
 }
 
 function dataLoadedHandler() {
-  cube = new Cube();
-  articlesClass = new Articles(articles, cube);
+  articlesClass = new Articles(articles);
   try {
     articlesClass.setupSliderArticles();
   } catch (e) {
     console.log(e);
   }
-  console.log('____');
-  progressClass = new Progress(sliderClass, cube);
-  navigationClass = new Navigation(sliderClass, progressClass);
-  console.log('LINKED>>> ');
-  sliderClass.openModal();
+  progressClass = new Progress(sliderClass);
+  sliderClass.activateSlider();
+}
+function nextActionHandler() {
+  progressClass.nextArrowHandler();
+}
+function prevActionHandler() {
+  progressClass.prevArrowHandler();
 }
 
 
@@ -38,7 +41,4 @@ function dataLoadedHandler() {
       // jsonpCallback: "quote"
   // });
 
-  // 
-
-
-window.addEventListener('load', pageReadyHandler); // ADTECH load;
+ONE.ready(() => pageReadyHandler()); // ONE load;

@@ -1,0 +1,28 @@
+#footer {
+  position: absolute;
+  bottom: 0px;
+}
+
+.ystories-logo-container {
+  width: 300px;
+  height: 98px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background: #400090;
+  cursor: pointer;
+  .ystories-logo {
+    width: 240px;
+    height: 98px;
+    margin-left: 25px;
+    // background: url(news.png) no-repeat;
+    background: url(news.jpg) no-repeat center center;
+    background-size: contain;
+  }
+}
+.next-screen {
+  display: none;
+}
+.prev-screen {
+  display: none;
+}
