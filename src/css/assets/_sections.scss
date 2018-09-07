@@ -1,4 +1,5 @@
 $circle-size: 30px;
+$color-accent: white;
 
 #main-section {
   width: 300px;
@@ -97,7 +98,7 @@ $circle-size: 30px;
         clip-path: polygon(0 0, 100% 12%, 100% 100%, 0% 100%);
         .slide-text {
           position: absolute;
-          top: 25%;
+          top: 15%;
           left: 10%;
           width: 80%;
           .read-more {
@@ -105,6 +106,9 @@ $circle-size: 30px;
             font-weight: bold;
             text-decoration: underline;
             cursor: pointer;
+          }
+          .read-more:hover {
+            opacity:0.9;
           }
         }
       }
@@ -140,7 +144,7 @@ label{
 #slider{
   position:absolute;
   left:0%; top:0;
-  width:10%; 
+  width:10%;
   padding-bottom:10%;
   margin:2.5% 0 0 5%;
   background:#fff;

@@ -27,7 +27,7 @@ class Articles {
     slideText.className = 'slide-text';
     readMore.className = 'read-more';
     slideImageContainer.style.background = 'url(' + article.image + ') center';
-    titleHeader.innerHTML = article.title;
+    titleHeader.innerHTML = this.truncate.apply(article.title, [90, true]);
     titleHeader.dataset.link = article.link;
     readMore.innerHTML = 'Read more';
     slideText.appendChild(titleHeader);
@@ -39,4 +39,12 @@ class Articles {
     this.swiperContainer.appendChild(swiperSlide);
     this.articleId = this.articleId + 1;
   }
+
+  truncate(n, useWordBoundary){
+    if (this.length <= n) { return this; }
+    var subString = this.substr(0, n-1);
+    return (useWordBoundary
+       ? subString.substr(0, subString.lastIndexOf(' '))
+       : subString) + "&hellip;";
+};
 }

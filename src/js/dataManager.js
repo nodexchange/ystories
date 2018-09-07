@@ -10,25 +10,20 @@ class DataManager {
   extractJsonData(data) {
     let id = 0;
     for (let i=0; i<5; i++) {
-      if (data[id].type === 'article') {
-        let item = {};
-        item.link = data[id].link;
-        if (data[id].summary.length > 180) {
-          item.summary = data[id].summary.substring(0, 180) + '(...)';
-        } else {
-          item.summary = data[id].summary;
-        }
-        item.title = data[id].title;
-        item.publisher = data[id].publisher;
-        if (data[id].image_assets) {
-          if (data[id].image_assets[0].url) {
-            item.image = data[id].image_assets[0].url;
-          }
-        }
-        this.articles.push(item);
-      } else {
-        i -= 1;
+      console.log(data[id]);
+      let item = {};
+      item.link = data[id].link;
+      item.title = data[id].title;
+      let encodedString = data[id].encoded;
+      let elem= document.createElement('div');
+      elem.innerHTML = encodedString;
+      let images = elem.getElementsByTagName('img');
+      for(let k=0; k < images.length; k++){
+        item.image = images[k].src;
+        console.log(images[k].src);
       }
+      // item.publisher = data[id].publisher;
+      this.articles.push(item);
       id += 1;
     }
     this.cb();
@@ -38,8 +33,11 @@ class DataManager {
     fetch(this.url) // Call the fetch function passing the url of the API as a parameter
     .then((data) => {
       data.json().then((dataObject) => {
-        if (dataObject.query.result) {
-          this.extractJsonData(dataObject.query.result.stream_items);
+        if (dataObject.query.results) {
+          // console.log(dataObject.query.results.item);
+          this.extractJsonData(dataObject.query.results.item);
+        } else {
+          console.log('FETCH ERROR', dataObject);
         }
       });
     })

@@ -25,7 +25,8 @@ class Progress {
     }
     this.progressComplete = setTimeout(() => {
       this.progressCompleteHandler();
-    }, 8000);
+    // }, 8000);
+    }, 800);
     setTimeout(() => {
       this.adProgress.style.transition = 'width 8s';
       this.adProgress.style.width = '100%';
@@ -45,6 +46,9 @@ class Progress {
   }
 
   updateRadios(nextSlide) {
+    if (this.lastTriggered > 4) {
+      return;
+    }
     let radioButton = document.getElementById('input' + (this.lastTriggered + 1));
     radioButton.checked = true;
     if (nextSlide === true) {

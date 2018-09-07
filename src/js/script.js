@@ -9,7 +9,7 @@ let sliderClass = {};
 
 function pageReadyHandler() {
   sliderClass = new Slider({ prevHandler: prevActionHandler, nextHandler: nextActionHandler });
-  dataManagerClass = new DataManager('./sidekick.json', articles, dataLoadedHandler);
+  dataManagerClass = new DataManager('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22https%3A%2F%2Fuk.style.yahoo.com%2Ftagged%2Fstyle%2Frss%22%20limit%205&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys', articles, dataLoadedHandler);
 }
 
 function dataLoadedHandler() {
