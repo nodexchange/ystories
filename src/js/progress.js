@@ -3,11 +3,33 @@ class Progress {
     this.displayTime = 0;
     this.lastUpdated = 0;
     this.adProgress = document.getElementsByClassName('progress')[0];
+    this.activeRadios();
     this.activateProgressBar();
     this.lastTriggered = 0;
     this.slider = sliderClass;
     this.cube = cubeClass;
   }
+
+  activeRadios() {
+    const radios = document.forms['formA'].elements['radio'];
+    console.log(radios);
+    let id = 0;
+    for(let radio in radios) {
+      if (!radios[id]) {
+        return;
+      }
+      radios[id].onclick = (e) => {
+        //alert(radio.value + ' ' + radio.id + ' ' + radio.checked + e.id);
+        let id = parseInt(e.target.id.split('ut')[1]) - 1;
+        this.slider.updateSlide(id);
+        this.lastTriggered = id;
+        this.updateRadios(false);
+        this.activateProgressBar();
+      }
+      id++;
+    }
+  }
+
   resetProgressBar() {
     this.lastUpdated = 0;
     this.displayTime = 0;
@@ -25,8 +47,8 @@ class Progress {
     }
     this.progressComplete = setTimeout(() => {
       this.progressCompleteHandler();
-    // }, 8000);
-    }, 800);
+    }, 8000);
+    // }, 800);
     setTimeout(() => {
       this.adProgress.style.transition = 'width 8s';
       this.adProgress.style.width = '100%';

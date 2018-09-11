@@ -3,14 +3,15 @@ $dot-height: 2px;
 $dots-container-width: 300px;
 
 .progress-bar-container {
-  top: -150px;
   height: $dot-height;
-  position: relative;
-  opacity: 0.9;
   width: $dots-container-width;
   display: flex;
   z-index: 4;
   left: 0;
+  top: -150px;
+  position: relative;
+  opacity: 0.9;
+
   .progress-bar {
     top: 0px;
     height: 100%;

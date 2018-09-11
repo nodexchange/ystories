@@ -10,17 +10,15 @@ class DataManager {
   extractJsonData(data) {
     let id = 0;
     for (let i=0; i<5; i++) {
-      console.log(data[id]);
       let item = {};
       item.link = data[id].link;
       item.title = data[id].title;
       let encodedString = data[id].encoded;
-      let elem= document.createElement('div');
+      let elem = document.createElement('div');
       elem.innerHTML = encodedString;
       let images = elem.getElementsByTagName('img');
-      for(let k=0; k < images.length; k++){
+      for (let k = 0; k < images.length; k++) {
         item.image = images[k].src;
-        console.log(images[k].src);
       }
       // item.publisher = data[id].publisher;
       this.articles.push(item);

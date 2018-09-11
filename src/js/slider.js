@@ -37,12 +37,9 @@ class Slider {
     // this.swiper.addEventListener('prev', () => this.prevHandler);
   }
   addClickthroughs() {
-    console.log('___ HERE');
     let slideImages = document.getElementsByClassName('slide-image');
     let slideText = document.getElementsByClassName('slide-text');
-    console.log(slideImages);
     for (let i = 0; i < slideImages.length; i++) {
-      console.log('ADDED', i);
       slideImages[i].addEventListener('click', (e) => this.clickHandler(e));
       slideText[i].addEventListener('click', (e) => this.clickHandler(e));
     }
@@ -50,8 +47,10 @@ class Slider {
   clickHandler(e) {
     let currentSlide = document.getElementById('slide' + this.currentIndex);
     let title = currentSlide.getElementsByClassName('slide-text')[0].childNodes[0];
-    console.log('CLICK HANDLER', title.innerHTML, title.dataset.link);
     ONE.click('Clickthrough', { meta: {title: title.innerHTML.substring(0, 50)}, overrideUrl: title.dataset.link });
+  }
+  updateSlide(id) {
+    this.swiper.slideTo(id);
   }
   nextSlide() {
     this.swiper.slideNext();
