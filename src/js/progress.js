@@ -12,7 +12,6 @@ class Progress {
 
   activeRadios() {
     const radios = document.forms['formA'].elements['radio'];
-    console.log(radios);
     let id = 0;
     for(let radio in radios) {
       if (!radios[id]) {

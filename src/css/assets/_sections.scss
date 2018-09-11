@@ -50,6 +50,7 @@ $color-accent: white;
       left: 270px;
     }
     .swiper-slide {
+      cursor: pointer;
       // display: -webkit-box;
       // display: -ms-flexbox;
       // display: -webkit-flex;
@@ -97,6 +98,7 @@ $color-accent: white;
         -webkit-clip-path: polygon(0 0, 100% 12%, 100% 100%, 0% 100%);
         clip-path: polygon(0 0, 100% 12%, 100% 100%, 0% 100%);
         .slide-text {
+          font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
           position: absolute;
           top: 15%;
           left: 10%;
