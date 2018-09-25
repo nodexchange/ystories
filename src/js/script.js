@@ -4,6 +4,7 @@
 const articles = [];
 let articlesClass = {};
 let progressClass = {};
+let footerClass = {};
 let dataManagerClass = {};
 let sliderClass = {};
 
@@ -20,6 +21,8 @@ function dataLoadedHandler() {
     console.log(e);
   }
   progressClass = new Progress(sliderClass);
+  footerClass = new Footer();
+
   sliderClass.activateSlider();
 }
 function nextActionHandler() {
