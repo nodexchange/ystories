@@ -23,7 +23,6 @@ class Slider {
       let currentSlide = document.getElementById('slide' + this.currentIndex);
       let currentImage = currentSlide.getElementsByClassName('slide-image')[0];
       currentImage.className = 'slide-image';
-      console.log('SLIDE CHANGE');
       if (this.swiper.activeIndex > this.currentIndex) {
         this.nextActionHandler();
       } else if (this.swiper.activeIndex < this.currentIndex) {

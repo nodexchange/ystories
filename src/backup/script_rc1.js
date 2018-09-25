@@ -145,7 +145,6 @@ function pageReadyHandler() {
   });
 
   let polygon = new Polygon(300, 500);
-  console.log(' >>>> ' + Polygon);
 
   function articleTemplate(article, active) {
     // figure.style.transformOrigin = `50% 50% ${-apothem}px`;

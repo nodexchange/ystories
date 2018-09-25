@@ -590,7 +590,6 @@ ADTECH.ready(function(){
       var initAni = true;
       HexaFlip.prototype._startAnimations = function(cube, delay) {
         var myCube = this;
-        console.log('HERE >>>');
         cube.holder.style[css.transform] = myCube._getTransform(0, 'finished');
         animateSwipeIcon();
         function animateSwipeIcon() {
@@ -829,7 +828,6 @@ ADTECH.ready(function(){
     if ((window.jQuery != null) || (((_ref1 = window.$) != null ? _ref1.data : void 0) != null)) {
       $.fn.hexaFlip = function(sets, options) {
         var args, el, instance, methodName, _j, _k, _len1, _len2;
-        console.log(options);
 
         if (!css.transform) {
           return this;
