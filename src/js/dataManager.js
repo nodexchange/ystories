@@ -1,27 +1,40 @@
 
 class DataManager {
-  constructor(url, articles, loadedCallback) {
+  constructor(url, articles, loadedCallback, brandSafetyClass) {
     this.url = url;
     this.articles = articles;
     this.cb = loadedCallback;
+    this.brandSafetyClass = brandSafetyClass;
+    this.retryAttemps = 0;
     this.fetchJSON();
   }
 
   extractJsonData(data) {
     let id = 0;
-    for (let i=0; i<5; i++) {
+    // TEST---
+    // console.log(data);
+    // data.splice(1, 0, { link: 'test', title: 'Cock in my garden' });
+    // console.log(data);
+    for (let i = 0; i < 5; i ++) {
       let item = {};
+      // console.log(data[id]);
+      /// UNDEFINED data means we are out of options
       item.link = data[id].link;
-      item.title = data[id].title;
-      let encodedString = data[id].encoded;
-      let elem = document.createElement('div');
-      elem.innerHTML = encodedString;
-      let images = elem.getElementsByTagName('img');
-      for (let k = 0; k < images.length; k++) {
-        item.image = images[k].src;
+      if (this.brandSafetyClass.verify(data[id].title)) {
+        // console.log('----SAFE----');
+        item.title = data[id].title;
+        let encodedString = data[id].encoded;
+        let elem = document.createElement('div');
+        elem.innerHTML = encodedString;
+        let images = elem.getElementsByTagName('img');
+        for (let k = 0; k < images.length; k++) {
+          item.image = images[k].src;
+        }
+        // item.publisher = data[id].publisher;
+        this.articles.push(item);
+      } else {
+        i -= 1;
       }
-      // item.publisher = data[id].publisher;
-      this.articles.push(item);
       id += 1;
     }
     this.cb();
@@ -35,7 +48,15 @@ class DataManager {
           // console.log(dataObject.query.results.item);
           this.extractJsonData(dataObject.query.results.item);
         } else {
+          this.retryAttemps ++;
           console.log('FETCH ERROR', dataObject);
+          if (this.retryAttemps < 5) {
+            setTimeout(() => {
+              this.fetchJSON();
+            }, 1000);
+          } else {
+            console.log('FETCH Error', 'GIVE UP');
+          }
         }
       });
     })
@@ -44,17 +65,4 @@ class DataManager {
         // This is where you run code if the server returns any errors
     });
   }
-
-  // Simple class instance methods using short-hand method
-  // declaration
-  sayName() {
-    ChromeSamples.log('Hi, I am a ', this.name + '.');
-  }
-
-  sayHistory() {
-    ChromeSamples.log('"Polygon" is derived from the Greek polus (many) ' +
-      'and gonia (angle).');
-  }
-
-  // We will look at static and subclassed methods shortly
 }
