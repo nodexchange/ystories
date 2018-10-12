@@ -13,7 +13,7 @@ class DataManager {
     let id = 0;
     // TEST---
     // console.log(data);
-    // data.splice(1, 0, { link: 'test', title: 'Cock in my garden' });
+    // data.splice(1, 0, { link: 'test', title: 'Cck in my garden' });
     // console.log(data);
     for (let i = 0; i < 5; i ++) {
       let item = {};
@@ -37,7 +37,7 @@ class DataManager {
       }
       id += 1;
     }
-    this.cb();
+    this.cb(true);
   }
 
   fetchJSON() {
@@ -49,12 +49,13 @@ class DataManager {
           this.extractJsonData(dataObject.query.results.item);
         } else {
           this.retryAttemps ++;
-          console.log('FETCH ERROR', dataObject);
+          // console.log('FETCH ERROR', dataObject);
           if (this.retryAttemps < 5) {
             setTimeout(() => {
               this.fetchJSON();
             }, 1000);
           } else {
+            this.defaultMessageRender();
             console.log('FETCH Error', 'GIVE UP');
           }
         }
@@ -64,5 +65,14 @@ class DataManager {
       console.log('FETCH ERROR ___ >>>> ', error);
         // This is where you run code if the server returns any errors
     });
+  }
+  defaultMessageRender() {
+    let item = {};
+    item.link = 'https://www.yahoo.com/news/';
+    item.title = 'Yahoo! News - Get breaking news stories and in-depth coverage with videos and photos.';
+    item.image = './default.jpg';
+    // item.publisher = data[id].publisher;
+    this.articles.push(item);
+    this.cb(false);
   }
 }
