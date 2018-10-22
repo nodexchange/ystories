@@ -37,7 +37,14 @@ class BrandSafety {
     for (let i = 0; i < message.length; i++) {
       // console.log('test word: ' + message[i]);
       let containsBadWord = this.keywordsArray.some(function (word) {
+        try {
           return new RegExp('\\b' + message[i].toLowerCase() + '\\b').test(word);
+        } catch (e) {
+          // console.log('regular err' + e);
+          // console.log('message : ' + message[i]);
+          // console.log('_____');
+          return false;
+        }
       });
   
       if (containsBadWord) {
