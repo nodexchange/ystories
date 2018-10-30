@@ -1,3 +1,5 @@
+/* global ONE */
+
 class Slider {
   constructor({prevHandler, nextHandler}) {
     this.nextActionHandler = nextHandler;
@@ -19,6 +21,7 @@ class Slider {
       }
     });
     this.currentIndex = this.swiper.activeIndex;
+    this.addEventTracking();
     this.swiper.on('slideChange', (el) => {
       let currentSlide = document.getElementById('slide' + this.currentIndex);
       let currentImage = currentSlide.getElementsByClassName('slide-image')[0];
@@ -44,10 +47,25 @@ class Slider {
       slideText[i].addEventListener('click', (e) => this.clickHandler(e));
     }
   }
+  addEventTracking() {
+    let title = this.retrieveTitle();
+    let nextButton = document.getElementsByClassName('swiper-button-next')[0];
+    let prevButton = document.getElementsByClassName('swiper-button-prev')[0];
+    nextButton.addEventListener('click', ()=>{
+      ONE.event('Next Article', { meta: { title: title.innerHTML.substring(0, 50) } });
+    });
+    prevButton.addEventListener('click', ()=>{
+      ONE.event('Prev Article', { meta: { title: title.innerHTML.substring(0, 50) } });
+    });
+  }
   clickHandler(e) {
+    let title = this.retrieveTitle();
+    ONE.click('Clickthrough', { meta: {title: title.innerHTML.substring(0, 50)}, overrideUrl: title.dataset.link });
+  }
+  retrieveTitle() {
     let currentSlide = document.getElementById('slide' + this.currentIndex);
     let title = currentSlide.getElementsByClassName('slide-text')[0].childNodes[0];
-    ONE.click('Clickthrough', { meta: {title: title.innerHTML.substring(0, 50)}, overrideUrl: title.dataset.link });
+    return title;
   }
   updateSlide(id) {
     this.swiper.slideTo(id);
