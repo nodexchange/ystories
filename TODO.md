@@ -1,13 +1,10 @@
 
 
 === v1.1
-impelemnt hurler / pictela text service.
-proxy 
-ONE.services.host.GET + 'a/proxy/text?url=https://www.wclc.com/jackpot-xml.xml?ttl=30', 'LOTTO MAX');
-loadRemoteData
-Map user interactions (ONE.events);
-Fix footer click
-Fix slide clicks
+(done) impelemnt hurler / pictela text service. proxy ONE.services.host.GET + 'a/proxy/text?url=https://www.wclc.com/jackpot-xml.xml?ttl=30', 'LOTTO MAX'); // loadRemoteData
+(done) Map user interactions (ONE.events);
+(done) Fix footer click
+(done) Fix slide clicks
 Test ON IE! 
 
 === v1.0

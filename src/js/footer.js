@@ -2,7 +2,7 @@
 
 class Footer {
   constructor(live) {
-    this.ystoriesLogo = document.getElementsByClassName('ystories-logo-container')[0];
+    this.ystoriesLogo = document.getElementsByClassName('footer-hotspot')[0];
     this.activeLogoClickthrough();
     if (!live) {
       this.ystoryRadios = document.getElementById('ystory-radios');

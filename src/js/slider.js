@@ -46,24 +46,27 @@ class Slider {
       slideImages[i].addEventListener('click', (e) => this.clickHandler(e));
       slideText[i].addEventListener('click', (e) => this.clickHandler(e));
     }
+    let slideLowerHotspot = document.getElementsByClassName('slide-hotspot')[0];
+    slideLowerHotspot.addEventListener('click', (e) => this.clickHandler(e));
   }
   addEventTracking() {
-    let title = this.retrieveTitle();
     let nextButton = document.getElementsByClassName('swiper-button-next')[0];
     let prevButton = document.getElementsByClassName('swiper-button-prev')[0];
     nextButton.addEventListener('click', ()=>{
+      let title = this.retrieveTitle(this.currentIndex - 1);
       ONE.event('Next Article', { meta: { title: title.innerHTML.substring(0, 50) } });
     });
     prevButton.addEventListener('click', ()=>{
+      let title = this.retrieveTitle(this.currentIndex + 1);
       ONE.event('Prev Article', { meta: { title: title.innerHTML.substring(0, 50) } });
     });
   }
-  clickHandler(e) {
-    let title = this.retrieveTitle();
+  clickHandler() {
+    let title = this.retrieveTitle(this.currentIndex);
     ONE.click('Clickthrough', { meta: {title: title.innerHTML.substring(0, 50)}, overrideUrl: title.dataset.link });
   }
-  retrieveTitle() {
-    let currentSlide = document.getElementById('slide' + this.currentIndex);
+  retrieveTitle(index) {
+    let currentSlide = document.getElementById('slide' + index);
     let title = currentSlide.getElementsByClassName('slide-text')[0].childNodes[0];
     return title;
   }
