@@ -14,7 +14,6 @@ class Footer {
 
   activeLogoClickthrough() {
     this.ystoriesLogo.addEventListener('click', () => {
-      alert('HERE???');
       ONE.click('Footer: Logo: Clickthrough');
     });
   }

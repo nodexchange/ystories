@@ -194,7 +194,7 @@ module.exports = grunt => {
   });
 
   grunt.registerTask('bundle', ['compile']);
-  grunt.registerTask('compile', ['username','clean', 'concat', 'uglify', 'sass', 'imagemin', 'copy:html', 'copy:assets', 'includereplace:dist', 'maxFilesize', 'size_report', 'bytesize'/*, 'copy:share' */]); // Compile would be around 1s faster without the eslint task.
+  grunt.registerTask('compile', ['username', 'clean', 'concat', 'uglify', 'sass', 'imagemin', 'copy:html', 'copy:assets', 'includereplace:dist', 'maxFilesize', 'size_report', 'bytesize'/*, 'copy:share' */]); // Compile would be around 1s faster without the eslint task.
   grunt.registerTask('default', ['clean', /* 'eslint', */ 'compile', 'browserSync', 'watch']);
 
   grunt.registerTask('username', '',
