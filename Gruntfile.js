@@ -23,7 +23,7 @@ module.exports = grunt => {
         cwd: 'src',
         src: '*.html',
         dest: 'build/',
-        filter: 'isFile',
+        filter: 'isFile'
       },
       assets: {
         expand: true,
@@ -31,7 +31,15 @@ module.exports = grunt => {
         cwd: 'src/assets/',
         src: '*.*',
         dest: 'dist/',
-        filter: 'isFile',
+        filter: 'isFile'
+      },
+      iebackup: {
+        expand: true,
+        flatten: true,
+        cwd: 'src/assets/',
+        src: 'iebackup.js',
+        dest: 'build/',
+        filter: 'isFile'
       },
       share: {
         expand: true,
@@ -160,16 +168,20 @@ module.exports = grunt => {
     watch: {
       html: {
         files: ['src/*.html'],
-        tasks: ['copy:html', 'includereplace:dist'],
+        tasks: ['copy:html', 'includereplace:dist']
       },
       sass: {
         files: ['src/css/*.scss', 'src/css/*.css', 'src/css/**/*.scss', 'src/css/**/*.css'],
-        tasks: ['sass', 'includereplace:dist'],
+        tasks: ['sass', 'includereplace:dist']
       },
       js: {
         files: ['src/js/*.js', 'src/js/**/*.js'],
         // tasks: ['eslint', 'concat', 'uglify', 'includereplace:dist'],
-        tasks: ['concat', 'uglify', 'includereplace:dist'],
+        tasks: ['concat', /* 'uglify' */ 'includereplace:dist']
+      },
+      assets: {
+        files: ['src/assets/iebackup.js'],
+        tasks: ['copy:iebackup', 'includereplace:dist']
       }
     },
 
@@ -194,7 +206,7 @@ module.exports = grunt => {
   });
 
   grunt.registerTask('bundle', ['compile']);
-  grunt.registerTask('compile', ['username', 'clean', 'concat', 'uglify', 'sass', 'imagemin', 'copy:html', 'copy:assets', 'includereplace:dist', 'maxFilesize', 'size_report', 'bytesize'/*, 'copy:share' */]); // Compile would be around 1s faster without the eslint task.
+  grunt.registerTask('compile', ['username', 'clean', 'concat', /* , 'uglify',*/ 'sass', 'imagemin', 'copy:html', 'copy:assets', 'copy:iebackup', 'includereplace:dist', 'maxFilesize', 'size_report', 'bytesize'/*, 'copy:share' */]); // Compile would be around 1s faster without the eslint task.
   grunt.registerTask('default', ['clean', /* 'eslint', */ 'compile', 'browserSync', 'watch']);
 
   grunt.registerTask('username', '',

@@ -1,0 +1,11 @@
+[
+  "text",
+  {
+    "key": "clickthrough.url",
+    "title": "click url"
+  },
+  {
+    "key": "image.name",
+    "title": "image"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "name": "ACT EMEA Desktop 300x600 Dynamic Feed",
+  "version": "0.0.3-emea.rc1",
+  "type": "display",
+  "mimeType": "application/javascript",
+  "labels": [
+    "1C"
+  ],
+  "tagType": "script",
+  "id": "d240b449-89f3-4965-a097-dba9f079b025"
+}

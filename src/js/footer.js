@@ -1,4 +1,4 @@
-/* global ONE */
+/* global $AD */
 
 class Footer {
   constructor(live) {
@@ -14,7 +14,11 @@ class Footer {
 
   activeLogoClickthrough() {
     this.ystoriesLogo.addEventListener('click', () => {
-      ONE.click('Footer: Logo: Clickthrough');
+      $AD.click('FooterClickthrough', {
+        overrides: {
+          url: 'https://www.yahoo.com/news/'
+        }
+      });
     });
   }
 }

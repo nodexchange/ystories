@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Rich In-Page Banner",
+  "type": "object",
+  "properties": {
+    "downloadedImpression": {
+      "$ref": "https://ad-formats.advertising.aol.com/v1/types/v1/schema.json#/definitions/SimpleEvent",
+      "default": {
+        "trackOnce": true
+      }
+    },
+    "backupImpression": {
+      "$ref": "https://ad-formats.advertising.aol.com/v1/types/v1/schema.json#/definitions/SimpleEvent",
+      "default": {
+        "trackOnce": true
+      }
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "htmlFile": {
+          "$ref": "https://ad-formats.advertising.aol.com/v1/types/v1/schema.json#/definitions/HtmlFile",
+          "default": {
+            "name": "index.html",
+            "size": {
+              "width": 300,
+              "height": 600
+            }
+          }
+        },
+        "brandSafetyFile": {
+          "$ref": "https://ad-formats.advertising.aol.com/v1/types/v1/schema.json#/definitions/ResourceFile",
+          "default": {
+            "name": "brandsafety.txt"
+          }
+        },
+        "yahooNewsLogo": {
+          "$ref": "https://ad-formats.advertising.aol.com/v1/types/v1/schema.json#/definitions/ImageFile",
+          "default": {
+            "name": "yahoonews.png",
+            "width": 461,
+            "height": 160
+          }
+        },
+        "backupImage": {
+          "$ref": "https://ad-formats.advertising.aol.com/v1/types/v1/schema.json#/definitions/ImageFile",
+          "default": {
+            "name": "oath_300x250.png",
+            "width": 300,
+            "height": 600
+          }
+        }
+      },
+      "default": {}
+    }
+  }
+}

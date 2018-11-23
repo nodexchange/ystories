@@ -1,4 +1,4 @@
-/* global location */
+/* global location $AD */
 
 class DataManager {
   constructor(url, articles, loadedCallback, brandSafetyClass) {
@@ -48,7 +48,10 @@ class DataManager {
 
   fetchRSS() {
     if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
-      this.url = ONE.services.host.GET + 'a/proxy/text?url=' + this.url + '?ttl=30';
+      // this.url = ONE.services.host.GET + 'a/proxy/text?url=' + this.url + '?ttl=30';
+      // this.url = $AD.config.services.host.GET + 'a/proxy/text?url=' + this.url + '?ttl=30';
+      this.url = $AD.config.AdServer.proto + '://ads.pictela.net/a/proxy/text?url=' + encodeURIComponent(this.url) + '&callback=externalDataFeedLoadHandler&ttl=30';
+      
     } else {
       console.log('[LOCALHOST] RSS DEBUG ON');
     }

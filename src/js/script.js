@@ -1,5 +1,5 @@
 'use strict';
-/* global ONE */
+/* global ONE $AD */
 
 const articles = [];
 let articlesClass = {};
@@ -10,8 +10,9 @@ let brandSafetyClass = {};
 let sliderClass = {};
 
 function pageReadyHandler() {
+  let assetPath = $AD.config.Creative.assetPath;
   sliderClass = new Slider({ prevHandler: prevActionHandler, nextHandler: nextActionHandler });
-  brandSafetyClass = new BrandSafety('./brandsafety.txt', initateDataManager);
+  brandSafetyClass = new BrandSafety(assetPath + './brandsafety.txt', initateDataManager);
 }
 
 function initateDataManager() {
@@ -37,5 +38,8 @@ function nextActionHandler() {
 function prevActionHandler() {
   progressClass.prevArrowHandler();
 }
-
-ONE.ready(() => pageReadyHandler()); // ONE load;
+if (!window.IEbackupExperienceActive) {
+  window.onload = (() => {
+    pageReadyHandler();
+  });
+}

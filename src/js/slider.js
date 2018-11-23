@@ -1,4 +1,4 @@
-/* global ONE */
+/* global $AD */
 
 class Slider {
   constructor({prevHandler, nextHandler}) {
@@ -54,16 +54,21 @@ class Slider {
     let prevButton = document.getElementsByClassName('swiper-button-prev')[0];
     nextButton.addEventListener('click', ()=>{
       let title = this.retrieveTitle(this.currentIndex - 1);
-      ONE.event('Next Article', { meta: { title: title.innerHTML.substring(0, 50) } });
+      $AD.event('Next Article : ' + title.innerHTML.substring(0, 50));
     });
     prevButton.addEventListener('click', ()=>{
       let title = this.retrieveTitle(this.currentIndex + 1);
-      ONE.event('Prev Article', { meta: { title: title.innerHTML.substring(0, 50) } });
+      $AD.event('Prev Article' + title.innerHTML.substring(0, 50));
     });
   }
   clickHandler() {
     let title = this.retrieveTitle(this.currentIndex);
-    ONE.click('Clickthrough', { meta: {title: title.innerHTML.substring(0, 50)}, overrideUrl: title.dataset.link });
+    let clickTag = 'Article Clickthrough : ' + title.innerHTML.substring(0, 50);
+    $AD.click(clickTag, {
+      overrides: {
+        url: title.dataset.link
+      }
+    });
   }
   retrieveTitle(index) {
     let currentSlide = document.getElementById('slide' + index);

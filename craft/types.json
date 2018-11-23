@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:3001/types/click",
+  "title": "One Creative Click",
+  "definitions": {
+    "Click": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string",
+          "default": "_blank"
+        }
+      },
+      "required": ["url"]
+    }
+  }
+}
