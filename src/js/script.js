@@ -16,8 +16,7 @@ function pageReadyHandler() {
 }
 
 function initateDataManager() {
-  dataManagerClass = new DataManager('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22https%3A%2F%2Fuk.style.yahoo.com%2Ftagged%2Fstyle%2Frss%22%20limit%2010&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys', articles, dataLoadedHandler, brandSafetyClass);
-  //RSS dataManagerClass = new DataManager('https://www.yahoo.com/news/rss', articles, dataLoadedHandler, brandSafetyClass);
+  dataManagerClass = new DataManager(articles, dataLoadedHandler, brandSafetyClass);
 }
 
 function dataLoadedHandler(live) {
@@ -38,6 +37,22 @@ function nextActionHandler() {
 function prevActionHandler() {
   progressClass.prevArrowHandler();
 }
+window.externalDataFeedLoadHandler = (data) => {
+  this.dataLoaded = true;
+  if (data.items.length > 0) {
+    dataManagerClass.extractJsonData(data.items, 'json');
+  } else {
+    dataManagerClass.defaultMessageRender(true);
+  }
+};
+window.checkForTimeout = () => {
+  setTimeout(() => {
+    if (!this.dataLoaded) {
+      dataManagerClass.defaultMessageRender(true);
+    }
+  }, 3500);
+};
+
 if (!window.IEbackupExperienceActive) {
   window.onload = (() => {
     pageReadyHandler();

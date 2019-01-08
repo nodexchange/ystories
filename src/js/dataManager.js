@@ -1,20 +1,32 @@
 /* global location $AD */
 
 class DataManager {
-  constructor(url, articles, loadedCallback, brandSafetyClass) {
-    this.url = url;
+  constructor(articles, loadedCallback, brandSafetyClass) {
     this.articles = articles;
     this.cb = loadedCallback;
     this.brandSafetyClass = brandSafetyClass;
     this.retryAttemps = 0;
-    this.fetchJSON();
+    // this.fetchJSON();
     // this.fetchRSS();
+    this.fetchXML('https://uk.style.yahoo.com/rss');
+  }
+
+  fetchXML(urlSrc) {
+    const proto = 'https';
+    if (typeof $AD.config.AdServer.proto !== 'undefined') {
+      proto = $AD.config.AdServer.proto;
+    }
+    this.url = urlSrc;
+    window.checkForTimeout();
+    const script = document.createElement('script');
+    script.src = proto + '://ads.pictela.net/a/proxy/text?url=' + encodeURIComponent('https://api.rss2json.com/v1/api.json?rss_url=' + this.url) + '&callback=externalDataFeedLoadHandler&ttl=30';
+    document.getElementsByTagName('head')[0].appendChild(script);
   }
 
   fetchJSON() {
     // console.log(ONE.loadRemoteData);
     // console.log(ONE.adConfig);
-    if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
+    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
       // LIVE BUT FAULTY this.url = ONE.services.host.GET + 'a/proxy/text?url=' + this.url + '?ttl=30';
     } else {
       console.log('[LOCALHOST] DEBUG ON');
@@ -48,19 +60,14 @@ class DataManager {
 
   fetchRSS() {
     if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
-      // this.url = ONE.services.host.GET + 'a/proxy/text?url=' + this.url + '?ttl=30';
-      // this.url = $AD.config.services.host.GET + 'a/proxy/text?url=' + this.url + '?ttl=30';
       this.url = $AD.config.AdServer.proto + '://ads.pictela.net/a/proxy/text?url=' + encodeURIComponent(this.url) + '&callback=externalDataFeedLoadHandler&ttl=30';
-      
     } else {
       console.log('[LOCALHOST] RSS DEBUG ON');
     }
-    console.log('___ HERE');
-    console.log(this.url);
-    fetch(this.url, { mode:'no-cors'})
-      .then(response => response.text())
-      .then(str => (new window.DOMParser()).parseFromString(str, 'text/xml'))
-      .then(str => console.log(str))
+    // fetch(this.url, { mode:'no-cors'})
+    //   .then(response => response.text())
+    //   .then(str => (new window.DOMParser()).parseFromString(str, 'text/xml'))
+    //   .then(str => console.log(str))
 
     // fetch(this.url, {
         // mode: 'no-cors' // no-cors, cors, *same-origi
@@ -86,14 +93,14 @@ class DataManager {
 
   extractJsonData(data, type) {
     let id = 0;
-    for (let i = 0; i < 5; i ++) {
+    for (let i = 0; i < 5; i++) {
       let item = {};
       item.link = data[id].link;
       if (this.brandSafetyClass.verify(data[id].title)) {
         item.title = data[id].title;
         let encodedString = data[id].description;
         if (type === 'json') {
-          encodedString = data[id].encoded;
+          encodedString = data[id].content;
         }
         let elem = document.createElement('div');
         elem.innerHTML = encodedString;
@@ -123,11 +130,16 @@ class DataManager {
     this.cb(true);
   }
 
-  defaultMessageRender() {
+  defaultMessageRender(failedLoad) {
     let item = {};
-    item.link = 'https://www.yahoo.com/news/';
+    item.link = 'https://uk.news.yahoo.com/';
     item.title = 'Yahoo! News - Get breaking news stories and in-depth coverage with videos and photos.';
     item.image = './default.jpg';
+    if (!failedLoad) {
+      $AD.event('Default Message');
+    } else {
+      $AD.event('Failed to load the feed');
+    }
     // item.publisher = data[id].publisher;
     this.articles.push(item);
     this.cb(false);

@@ -16,7 +16,7 @@ class Footer {
     this.ystoriesLogo.addEventListener('click', () => {
       $AD.click('FooterClickthrough', {
         overrides: {
-          url: 'https://www.yahoo.com/news/'
+          url: 'https://uk.news.yahoo.com/'
         }
       });
     });

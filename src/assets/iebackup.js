@@ -15,7 +15,7 @@ function activeTheBackupExperience() {
   var slideImage = document.createElement('div');
   var slideTextContainer = document.createElement('div');
   var clickContainer = document.createElement('div');
-  item.link = 'https://www.yahoo.com/news/';
+  item.link = 'https://uk.news.yahoo.com/';
   item.title = 'Yahoo! News<br/><br/>Get breaking news stories and in-depth coverage with videos and photos.';
   item.image = './default.jpg';
   swiperContainer.style.display = 'none';
@@ -32,10 +32,10 @@ function activeTheBackupExperience() {
   clickContainer.id = 'clickContainer';
   clickContainer.backgroundColor = 'blue';
   clickContainer.addEventListener('click', function () {
-    window.open('https://www.yahoo.com/news/', '_blank');
+    window.open('https://uk.news.yahoo.com/', '_blank');
     $AD.click('FooterClickthrough', {
       overrides: {
-        url: 'https://www.yahoo.com/news/'
+        url: 'https://uk.news.yahoo.com/'
       }
     });
   });
