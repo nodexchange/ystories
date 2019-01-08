@@ -12,7 +12,7 @@ class DataManager {
   }
 
   fetchXML(urlSrc) {
-    const proto = 'https';
+    let proto = 'https';
     if (typeof $AD.config.AdServer.proto !== 'undefined') {
       proto = $AD.config.AdServer.proto;
     }

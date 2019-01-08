@@ -177,7 +177,7 @@ module.exports = grunt => {
       js: {
         files: ['src/js/*.js', 'src/js/**/*.js'],
         // tasks: ['eslint', 'concat', 'uglify', 'includereplace:dist'],
-        tasks: ['concat', /* 'uglify' */ 'includereplace:dist']
+        tasks: ['concat', 'uglify', 'includereplace:dist']
       },
       assets: {
         files: ['src/assets/iebackup.js'],
